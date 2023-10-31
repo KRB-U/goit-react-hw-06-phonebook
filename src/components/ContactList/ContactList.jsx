@@ -3,6 +3,8 @@ import { Button, ContactItem } from './ContactList.styled';
 
 import { deleteContact } from 'components/redux/action';
 
+import toast from 'react-hot-toast';
+
 const ContactList = () => {
   const dispatch = useDispatch();
 
@@ -15,13 +17,18 @@ const ContactList = () => {
       )
     : allContacts;
 
+  const handleDeleteContact = id => {
+    dispatch(deleteContact(id));
+    toast.success('Видалено');
+  };
+
   return (
     <div>
       <ul>
         {filteredContacts.map(({ name, number, id }) => (
           <ContactItem key={id}>
             {name}: {number}
-            <Button type="submit" onClick={() => dispatch(deleteContact(id))}>
+            <Button type="submit" onClick={() => handleDeleteContact(id)}>
               Delete
             </Button>
           </ContactItem>
