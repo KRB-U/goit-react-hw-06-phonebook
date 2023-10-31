@@ -9,11 +9,11 @@ const ContactList = () => {
   const allContacts = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter);
 
-  const normalizedFilter = filter.toLowerCase();
-
-  const filteredContacts = allContacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter)
-  );
+  const filteredContacts = filter
+    ? allContacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      )
+    : allContacts;
 
   return (
     <div>
