@@ -54,7 +54,7 @@ const ContactForm = () => {
     );
 
     if (isNameInContacts) {
-      alert(`${name} is already in contacts`);
+      toast.error(`контакт з іменем ${name} вже є`);
       return;
     }
 
