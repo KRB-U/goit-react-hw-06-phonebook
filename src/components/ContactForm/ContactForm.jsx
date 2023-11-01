@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { addContact } from 'components/redux/action';
 import { nanoid } from 'nanoid';
 
@@ -15,17 +16,38 @@ import {
 } from './ContactForm.styled';
 
 const ContactForm = () => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
   const dispatch = useDispatch();
   const allContacts = useSelector(state => state.contacts.contacts);
 
   const formNameUniqueKey = nanoid(10);
   const formNumberUniqueKey = nanoid(7);
 
+  const reset = () => {
+    setName('');
+    setNumber('');
+  };
+
+  const handleChange = evt => {
+    const { name, value } = evt.target;
+
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+
+      default:
+        return;
+    }
+  };
+
   const handleSubmit = evt => {
     evt.preventDefault();
-
-    const name = evt.target.name.value;
-    const number = evt.target.number.value;
 
     const isNameInContacts = allContacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -37,10 +59,8 @@ const ContactForm = () => {
     }
 
     dispatch(addContact({ name, number }));
-
     toast.success('Додано');
-
-    evt.target.reset();
+    reset();
   };
 
   return (
@@ -48,7 +68,14 @@ const ContactForm = () => {
       <form onSubmit={handleSubmit}>
         <LabelInputName htmlFor={formNameUniqueKey}>
           Name
-          <InputName type="text" name="name" required id={formNameUniqueKey} />
+          <InputName
+            type="text"
+            name="name"
+            required
+            value={name}
+            onChange={handleChange}
+            id={formNameUniqueKey}
+          />
         </LabelInputName>
 
         <LabelInputPhone htmlFor={formNumberUniqueKey}>
@@ -57,6 +84,8 @@ const ContactForm = () => {
             type="tel"
             name="number"
             required
+            value={number}
+            onChange={handleChange}
             id={formNumberUniqueKey}
           />
         </LabelInputPhone>
