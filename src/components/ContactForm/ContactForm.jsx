@@ -1,5 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'components/redux/action';
 import { nanoid } from 'nanoid';
-import contactsData from 'jsonData/contactsData.json';
+
+// NOTIFY
+import toast from 'react-hot-toast';
 
 import {
   FormContainer,
@@ -10,14 +14,9 @@ import {
   Button,
 } from './ContactForm.styled';
 
-// NOTIFY
-import toast from 'react-hot-toast';
-
-import { useDispatch } from 'react-redux';
-import { addContact } from 'components/redux/action';
-
 const ContactForm = () => {
   const dispatch = useDispatch();
+  const allContacts = useSelector(state => state.contacts.contacts);
 
   const formNameUniqueKey = nanoid(10);
   const formNumberUniqueKey = nanoid(7);
@@ -28,7 +27,7 @@ const ContactForm = () => {
     const name = evt.target.name.value;
     const number = evt.target.number.value;
 
-    const isNameInContacts = contactsData.some(
+    const isNameInContacts = allContacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
 
