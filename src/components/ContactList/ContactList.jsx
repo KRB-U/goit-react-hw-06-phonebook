@@ -8,8 +8,8 @@ import toast from 'react-hot-toast';
 const ContactList = () => {
   const dispatch = useDispatch();
 
-  const allContacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const allContacts = useSelector(state => state.contacts.contacts);
+  const filter = useSelector(state => state.filter.filter);
   console.log(allContacts);
 
   const filteredContacts = filter
