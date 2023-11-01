@@ -10,6 +10,7 @@ const ContactList = () => {
 
   const allContacts = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter);
+  console.log(allContacts);
 
   const filteredContacts = filter
     ? allContacts.filter(contact =>

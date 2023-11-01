@@ -1,13 +1,12 @@
 import { devToolsEnhancer } from '@redux-devtools/extension';
 import contactsData from 'jsonData/contactsData.json';
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 
-const initialState = {
+const contactInitialState = {
   contacts: [...contactsData],
-  filters: '',
 };
 
-const rootReducer = (state = initialState, action) => {
+const contactReducer = (state = contactInitialState, action) => {
   switch (action.type) {
     case 'contacts/addContact':
       return {
@@ -23,6 +22,17 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
 
+    default:
+      return state;
+  }
+};
+
+const filterInitialState = {
+  filter: '',
+};
+
+const filterReducer = (state = filterInitialState, action) => {
+  switch (action.type) {
     case 'filter/setFilterValue':
       return {
         ...state,
@@ -33,6 +43,11 @@ const rootReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+const rootReducer = combineReducers({
+  contacts: contactReducer,
+  filter: filterReducer,
+});
 
 const enhancer = devToolsEnhancer();
 
