@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 // import { addContact } from 'components/redux/action';
 import { addContact } from 'components/redux/contactSlice';
-
+import { getContacts } from 'components/redux/selectors';
 import { nanoid } from 'nanoid';
+
 // NOTIFY
 import toast from 'react-hot-toast';
 
@@ -21,7 +22,7 @@ const ContactForm = () => {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const allContacts = useSelector(state => state.contacts.contacts);
+  const allContacts = useSelector(getContacts);
 
   const formNameUniqueKey = nanoid(10);
   const formNumberUniqueKey = nanoid(7);
