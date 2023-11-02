@@ -4,7 +4,6 @@ import { Button, ContactItem } from './ContactList.styled';
 // import { deleteContact } from 'components/redux/action';
 import { deleteContact } from 'components/redux/contactSlice';
 import { getContacts, getFilter } from 'components/redux/selectors';
-
 import toast from 'react-hot-toast';
 
 const ContactList = () => {
