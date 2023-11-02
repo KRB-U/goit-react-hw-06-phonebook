@@ -13,7 +13,6 @@ export const Button = styled.button`
   border: none;
   border-radius: 5px;
 
-  background-color: orange;
   cursor: pointer;
 
   width: fit-content;
@@ -23,15 +22,16 @@ export const Button = styled.button`
   align-items: center;
   padding: 10px;
 
-  color: black;
+  color: white;
+  background-color: #666666;
+  border: none;
 
   &:hover {
-    background-color: green;
-    color: white;
+    background-color: #007bff;
   }
 
   &:active {
-    background-color: red;
+    background-color: #ff4500;
     color: white;
   }
 `;

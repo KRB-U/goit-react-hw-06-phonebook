@@ -5,9 +5,9 @@ export const ContainerWrapper = styled.div`
   /* display: flex; */
   margin: 0 auto;
   width: 800px;
-  border: 2px solid #cccccc;
+  border: 2px solid #337ab7;
   border-radius: 10px;
-  background-color: #f5f5f5;
+  background-color: #f2f9ff;
 `;
 
 export const TitlePhonebook = styled.h1`
