@@ -21,7 +21,7 @@ const ContactForm = () => {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const allContacts = useSelector(state => state.contacts);
+  const allContacts = useSelector(state => state.contacts.contacts);
 
   const formNameUniqueKey = nanoid(10);
   const formNumberUniqueKey = nanoid(7);
