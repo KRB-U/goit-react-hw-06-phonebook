@@ -13,11 +13,15 @@ const ContactList = () => {
   // console.log(allContacts);
   const filter = useSelector(getFilter);
 
-  const filteredContacts = filter
-    ? allContacts.filter(contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase())
-      )
-    : allContacts;
+  const getVisibleContacts = () => {
+    const normalizedFilter = filter.toLowerCase();
+
+    return allContacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  const filteredContacts = getVisibleContacts();
 
   const handleDeleteContact = id => {
     dispatch(deleteContact(id));
